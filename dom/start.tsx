@@ -5,6 +5,9 @@ import { assert } from "https://deno.land/std@0.146.0/testing/asserts.ts";
 // assigning url to the first argument passed to Deno CLI
 const url = Deno.args[0];
 
+// assign element to search for as second argument
+const el = Deno.args[1];
+
 try {
   // launch browser
   const browser = await puppeteer.launch();
@@ -20,7 +23,7 @@ try {
   const document: any = new DOMParser().parseFromString(html, "text/html");
 
   // select h1 from the new DOM structure
-  const pageHeader = document.querySelector("h1");
+  const pageHeader = document.querySelector(el);
 
   // check to make sure an h1 was found
   if (pageHeader) {
